@@ -1,0 +1,13 @@
+C:\Users\Daniela\Desktop\Modelo\BarRestaurantControl\BarRestaurant\bin\Debug\BarRestaurant.dll.config
+C:\Users\Daniela\Desktop\Modelo\BarRestaurantControl\BarRestaurant\bin\Debug\BarRestaurant.dll
+C:\Users\Daniela\Desktop\Modelo\BarRestaurantControl\BarRestaurant\bin\Debug\BarRestaurant.pdb
+C:\Users\Daniela\Desktop\Modelo\BarRestaurantControl\BarRestaurant\obj\Debug\BarRestaurant.csprojResolveAssemblyReference.cache
+C:\Users\Daniela\Desktop\Modelo\BarRestaurantControl\BarRestaurant\obj\Debug\BarRestaurant.dll
+C:\Users\Daniela\Desktop\Modelo\BarRestaurantControl\BarRestaurant\obj\Debug\BarRestaurant.pdb
+C:\Users\Daniela\Desktop\Monografía\BarRestaurantControl\BarRestaurant\bin\Debug\BarRestaurant.dll.config
+C:\Users\Daniela\Desktop\Monografía\BarRestaurantControl\BarRestaurant\bin\Debug\BarRestaurant.dll
+C:\Users\Daniela\Desktop\Monografía\BarRestaurantControl\BarRestaurant\bin\Debug\BarRestaurant.pdb
+C:\Users\Daniela\Desktop\Monografía\BarRestaurantControl\BarRestaurant\obj\Debug\BarRestaurant.csprojAssemblyReference.cache
+C:\Users\Daniela\Desktop\Monografía\BarRestaurantControl\BarRestaurant\obj\Debug\BarRestaurant.csproj.CoreCompileInputs.cache
+C:\Users\Daniela\Desktop\Monografía\BarRestaurantControl\BarRestaurant\obj\Debug\BarRestaurant.dll
+C:\Users\Daniela\Desktop\Monografía\BarRestaurantControl\BarRestaurant\obj\Debug\BarRestaurant.pdb
