@@ -333,6 +333,7 @@
           <Property Name="OrdenId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Menu" Relationship="FirstModel.MenuDetalleDeOrden" FromRole="DetalleDeOrden" ToRole="Menu" />
           <Property Name="MenuId" Type="Int32" Nullable="false" />
+          <Property Name="EstadoDetalle" Type="String" Nullable="false" />
         </EntityType>
         <EntityType Name="Orden">
           <Key>
@@ -391,7 +392,6 @@
           <Property Name="DNI" Type="String" Nullable="false" FixedLength="true" MaxLength="15" />
           <Property Name="Nombre1" Type="String" Nullable="false" MaxLength="80" Unicode="true" />
           <Property Name="Apellido1" Type="String" Nullable="false" MaxLength="80" Unicode="true" />
-          <Property Name="Apellido2" Type="String" Nullable="false" Unicode="true" MaxLength="80" />
           <NavigationProperty Name="Mesero" Relationship="FirstModel.DatoMesero" FromRole="Dato" ToRole="Mesero" />
           <NavigationProperty Name="Cliente" Relationship="FirstModel.DatoCliente" FromRole="Dato" ToRole="Cliente" />
           <NavigationProperty Name="Proveedor" Relationship="FirstModel.DatoProveedor" FromRole="Dato" ToRole="Proveedor" />
