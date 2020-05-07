@@ -68,6 +68,7 @@
         <AssociationConnector Association="FirstModel.MenuDetalleDeOrden" />
         <AssociationConnector Association="FirstModel.ImagenOrden" />
         <AssociationConnector Association="FirstModel.ImagenMenu" />
+        <EntityTypeShape EntityType="FirstModel.Mesa" Width="1.5" PointX="8.375" PointY="6.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

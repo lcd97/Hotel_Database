@@ -154,6 +154,7 @@
             <End Role="Imagen" EntitySet="Imagenes" />
             <End Role="Menu" EntitySet="Menus" />
           </AssociationSet>
+          <EntitySet Name="Mesas" EntityType="FirstModel.Mesa" />
         </EntityContainer>
         <EntityType Name="Proveedor">
           <Key>
@@ -823,6 +824,12 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Mesa">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
