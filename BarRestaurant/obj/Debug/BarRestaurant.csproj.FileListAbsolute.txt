@@ -11,3 +11,10 @@ C:\Users\Daniela\Desktop\Monografía\BarRestaurantControl\BarRestaurant\obj\Debu
 C:\Users\Daniela\Desktop\Monografía\BarRestaurantControl\BarRestaurant\obj\Debug\BarRestaurant.csproj.CoreCompileInputs.cache
 C:\Users\Daniela\Desktop\Monografía\BarRestaurantControl\BarRestaurant\obj\Debug\BarRestaurant.dll
 C:\Users\Daniela\Desktop\Monografía\BarRestaurantControl\BarRestaurant\obj\Debug\BarRestaurant.pdb
+C:\Users\Daniela Cordero\Downloads\BarRestaurantControl\BarRestaurant\bin\Debug\BarRestaurant.dll.config
+C:\Users\Daniela Cordero\Downloads\BarRestaurantControl\BarRestaurant\bin\Debug\BarRestaurant.dll
+C:\Users\Daniela Cordero\Downloads\BarRestaurantControl\BarRestaurant\bin\Debug\BarRestaurant.pdb
+C:\Users\Daniela Cordero\Downloads\BarRestaurantControl\BarRestaurant\obj\Debug\BarRestaurant.csprojAssemblyReference.cache
+C:\Users\Daniela Cordero\Downloads\BarRestaurantControl\BarRestaurant\obj\Debug\BarRestaurant.csproj.CoreCompileInputs.cache
+C:\Users\Daniela Cordero\Downloads\BarRestaurantControl\BarRestaurant\obj\Debug\BarRestaurant.dll
+C:\Users\Daniela Cordero\Downloads\BarRestaurantControl\BarRestaurant\obj\Debug\BarRestaurant.pdb

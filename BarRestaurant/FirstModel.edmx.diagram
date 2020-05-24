@@ -4,12 +4,12 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="8a395726d34d4cb4a39652322dc0e772" Name="Diagram1" ZoomLevel="78" >
+      <Diagram DiagramId="8a395726d34d4cb4a39652322dc0e772" Name="Diagram1" ZoomLevel="66" >
         <EntityTypeShape EntityType="FirstModel.Proveedor" Width="1.625" PointX="1.625" PointY="7.625" IsExpanded="true" />
         <EntityTypeShape EntityType="FirstModel.Entrada" Width="1.5" PointX="4.875" PointY="11" />
         <EntityTypeShape EntityType="FirstModel.TipoDeEntrada" Width="1.875" PointX="2.125" PointY="11.875" IsExpanded="true" />
         <EntityTypeShape EntityType="FirstModel.DetalleDeEntrada" Width="1.875" PointX="7.25" PointY="11" />
-        <EntityTypeShape EntityType="FirstModel.Categoria" Width="1.5" PointX="7.5" PointY="13.625" />
+        <EntityTypeShape EntityType="FirstModel.CategoriaProveedor" Width="1.5" PointX="7.5" PointY="13.625" />
         <EntityTypeShape EntityType="FirstModel.Producto" Width="2" PointX="10.625" PointY="10.75" />
         <EntityTypeShape EntityType="FirstModel.DetalleDeSalida" Width="2" PointX="13.625" PointY="11.875" />
         <EntityTypeShape EntityType="FirstModel.Salida" Width="1.5" PointX="16.625" PointY="10.75" />
@@ -47,8 +47,7 @@
         <AssociationConnector Association="FirstModel.PagoDetalleDePago" />
         <EntityTypeShape EntityType="FirstModel.TipoDeCliente" Width="2" PointX="29.875" PointY="9.375" />
         <AssociationConnector Association="FirstModel.TipoDeClienteCliente" />
-        <EntityTypeShape EntityType="FirstModel.Imagen" Width="1.5" PointX="28.625" PointY="12" />
-        <AssociationConnector Association="FirstModel.PagoImagen" />
+        <EntityTypeShape EntityType="FirstModel.Imagen" Width="1.5" PointX="29" PointY="12.25" />
         <AssociationConnector Association="FirstModel.DatoProveedor" ManuallyRouted="false" >
         </AssociationConnector>
         <AssociationConnector Association="FirstModel.ProductoDetalleDeSalida" />
@@ -67,8 +66,20 @@
         </AssociationConnector>
         <AssociationConnector Association="FirstModel.MenuDetalleDeOrden" />
         <AssociationConnector Association="FirstModel.ImagenOrden" />
-        <AssociationConnector Association="FirstModel.ImagenMenu" />
-        <EntityTypeShape EntityType="FirstModel.Mesa" Width="1.5" PointX="8.375" PointY="6.75" />
+        <AssociationConnector Association="FirstModel.ImagenMenu" ManuallyRouted="true" >
+          <ConnectorPoint PointX="29" PointY="12.971026263020827" />
+          <ConnectorPoint PointX="25.125" PointY="12.971026263020827" />
+          <ConnectorPoint PointX="25.125" PointY="12.740215151009416" />
+          <ConnectorPoint PointX="21.875" PointY="12.740215151009416" />
+          <ConnectorPoint PointX="21.875" PointY="13.710999348958332" />
+          <ConnectorPoint PointX="21.270833333333332" PointY="13.710999348958332" />
+          <ConnectorPoint PointX="21.104166666666668" PointY="13.710999348958332" />
+          <ConnectorPoint PointX="18.375" PointY="13.710999348958332" />
+          <ConnectorPoint PointX="18.375" PointY="14.125" />
+          <ConnectorPoint PointX="17.0625" PointY="14.125" />
+          <ConnectorPoint PointX="17.0625" PointY="14.375" />
+        </AssociationConnector>
+        <AssociationConnector Association="FirstModel.ImagenPago" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
