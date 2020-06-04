@@ -5,7 +5,7 @@
     <EntitySet Name="Entradas" EntityType="FirstModel.Entrada" />
     <EntitySet Name="TiposDeEntrada" EntityType="FirstModel.TipoDeEntrada" />
     <EntitySet Name="DetallesDeEntrada" EntityType="FirstModel.DetalleDeEntrada" />
-    <EntitySet Name="Categorias" EntityType="FirstModel.CategoriaProveedor" />
+    <EntitySet Name="CategoriasProveedor" EntityType="FirstModel.CategoriaProveedor" />
     <EntitySet Name="Productos" EntityType="FirstModel.Producto" />
     <EntitySet Name="DetallesDeSalida" EntityType="FirstModel.DetalleDeSalida" />
     <EntitySet Name="Salidas" EntityType="FirstModel.Salida" />
@@ -34,7 +34,7 @@
       <End Role="DetalleDeEntrada" EntitySet="DetallesDeEntrada" />
     </AssociationSet>
     <AssociationSet Name="CategoriaProducto" Association="FirstModel.CategoriaProducto">
-      <End Role="Categoria" EntitySet="Categorias" />
+      <End Role="Categoria" EntitySet="CategoriasProveedor" />
       <End Role="Producto" EntitySet="Productos" />
     </AssociationSet>
     <AssociationSet Name="SalidaDetalleDeSalida" Association="FirstModel.SalidaDetalleDeSalida">
@@ -148,12 +148,12 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="NombreComercial" Type="String" Nullable="false" MaxLength="80" Unicode="true" />
-    <Property Name="TelefonoProveedor" Type="String" FixedLength="true" MaxLength="8" Unicode="true" Nullable="true" />
+    <Property Name="NombreComercial" Type="String" Nullable="false" MaxLength="50" Unicode="true" />
+    <Property Name="TelefonoProveedor" Type="String" FixedLength="true" MaxLength="9" Unicode="true" Nullable="true" />
     <NavigationProperty Name="Entrada" Relationship="FirstModel.ProveedorEntrada" FromRole="Proveedor" ToRole="Entrada" />
     <Property Name="EstadoProveedor" Type="Boolean" Nullable="false" />
-    <Property Name="RetenedorIR" Type="String" Nullable="false" />
-    <Property Name="Local" Type="String" Nullable="false" />
+    <Property Name="RetenedorIR" Type="Boolean" Nullable="false" />
+    <Property Name="Local" Type="Boolean" Nullable="false" />
     <NavigationProperty Name="Dato" Relationship="FirstModel.DatoProveedor" FromRole="Proveedor" ToRole="Dato" />
     <Property Name="DatoId" Type="Int32" Nullable="false" />
   </EntityType>
@@ -162,7 +162,7 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="CodigoEntrada" Type="String" Nullable="false" FixedLength="true" MaxLength="4" Unicode="true" />
+    <Property Name="CodigoEntrada" Type="String" Nullable="false" FixedLength="true" MaxLength="3" Unicode="true" />
     <Property Name="FechaEntrada" Type="DateTime" Nullable="false" />
     <Property Name="EstadoEntrada" Type="Boolean" Nullable="false" />
     <NavigationProperty Name="Proveedor" Relationship="FirstModel.ProveedorEntrada" FromRole="Entrada" ToRole="Proveedor" />
@@ -178,7 +178,7 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="CodigoTipoEntrada" Type="String" Nullable="false" FixedLength="true" MaxLength="4" Unicode="true" />
+    <Property Name="CodigoTipoEntrada" Type="String" Nullable="false" FixedLength="true" MaxLength="3" Unicode="true" />
     <Property Name="DescripcionTipoEntrada" Type="String" Nullable="false" MaxLength="50" Unicode="true" />
     <Property Name="EstadoTipoEntrada" Type="Boolean" Nullable="false" />
     <NavigationProperty Name="Entrada" Relationship="FirstModel.TipoDeEntradaEntrada" FromRole="TipoDeEntrada" ToRole="Entrada" />
@@ -200,8 +200,8 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="CodigoCategoriaProducto" Type="String" Nullable="false" FixedLength="true" MaxLength="4" Unicode="true" />
-    <Property Name="DescripcionCategoriaMenu" Type="String" Nullable="false" MaxLength="50" Unicode="true" />
+    <Property Name="CodigoCategoriaProducto" Type="String" Nullable="false" FixedLength="true" MaxLength="3" Unicode="true" />
+    <Property Name="DescripcionCategoriaProducto" Type="String" Nullable="false" MaxLength="50" Unicode="true" />
     <Property Name="EstadoCategoriaMenu" Type="Boolean" Nullable="false" />
     <NavigationProperty Name="Producto" Relationship="FirstModel.CategoriaProducto" FromRole="Categoria" ToRole="Producto" />
   </EntityType>
@@ -210,19 +210,19 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="CodigoProducto" Type="String" Nullable="false" FixedLength="true" MaxLength="4" Unicode="true" />
+    <Property Name="CodigoProducto" Type="String" Nullable="false" FixedLength="true" MaxLength="3" Unicode="true" />
     <Property Name="NombreProducto" Type="String" Nullable="false" MaxLength="50" />
-    <Property Name="MarcaProducto" Type="String" Nullable="false" />
+    <Property Name="MarcaProducto" Type="String" Nullable="false" MaxLength="50" />
     <Property Name="EstadoProducto" Type="Boolean" Nullable="false" />
-    <Property Name="Cantidad" Type="String" Nullable="false" />
-    <Property Name="CantidadMaxima" Type="String" Nullable="false" />
-    <Property Name="CantidadMinima" Type="String" Nullable="false" />
+    <Property Name="CantidadProducto" Type="Double" Nullable="false" />
+    <Property Name="CantidadMaxProducto" Type="Double" Nullable="false" />
+    <Property Name="CantidadMinProducto" Type="String" Nullable="false" />
     <NavigationProperty Name="Categoria" Relationship="FirstModel.CategoriaProducto" FromRole="Producto" ToRole="Categoria" />
     <Property Name="CategoriaId" Type="Int32" Nullable="false" />
     <NavigationProperty Name="DetalleDeSalida" Relationship="FirstModel.ProductoDetalleDeSalida" FromRole="Producto" ToRole="DetalleDeSalida" />
     <NavigationProperty Name="DetalleDeEntrada" Relationship="FirstModel.ProductoDetalleDeEntrada" FromRole="Producto" ToRole="DetalleDeEntrada" />
     <NavigationProperty Name="UnidadDeMedida" Relationship="FirstModel.UnidadDeMedidaProducto" FromRole="Producto" ToRole="UnidadDeMedida" />
-    <Property Name="UnidadDeMedidaId1" Type="Int32" Nullable="false" />
+    <Property Name="UnidadDeMedidaI" Type="Int32" Nullable="false" />
   </EntityType>
   <EntityType Name="DetalleDeSalida">
     <Key>
@@ -240,7 +240,7 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="CodigoSalida" Type="String" Nullable="false" FixedLength="true" MaxLength="4" Unicode="true" />
+    <Property Name="CodigoSalida" Type="String" Nullable="false" FixedLength="true" MaxLength="3" Unicode="true" />
     <Property Name="FechaSalida" Type="DateTime" Nullable="false" />
     <Property Name="EstadoSalida" Type="Boolean" Nullable="false" />
     <NavigationProperty Name="DetalleDeSalida" Relationship="FirstModel.SalidaDetalleDeSalida" FromRole="Salida" ToRole="DetalleDeSalida" />
@@ -256,7 +256,7 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="CodigoTipoSalida" Type="String" Nullable="false" FixedLength="true" MaxLength="4" Unicode="true" />
+    <Property Name="CodigoTipoSalida" Type="String" Nullable="false" FixedLength="true" MaxLength="3" Unicode="true" />
     <Property Name="DescripcionTipoSalida" Type="String" Nullable="false" MaxLength="50" Unicode="true" />
     <Property Name="EstadoTipoSalida" Type="Boolean" Nullable="false" />
     <NavigationProperty Name="Salida" Relationship="FirstModel.TipoDeSalidaSalida" FromRole="TipoDeSalida" ToRole="Salida" />
@@ -266,20 +266,20 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="CodigoUnidadMedida" Type="String" Nullable="false" FixedLength="true" MaxLength="4" Unicode="true" />
+    <Property Name="CodigoUnidadMedida" Type="String" Nullable="false" FixedLength="true" MaxLength="3" Unicode="true" />
     <Property Name="DescripcionUnidadMedida" Type="String" Nullable="false" MaxLength="50" Unicode="true" />
     <Property Name="EstadoUnidadMedida" Type="Boolean" Nullable="false" />
     <NavigationProperty Name="Producto" Relationship="FirstModel.UnidadDeMedidaProducto" FromRole="UnidadDeMedida" ToRole="Producto" />
-    <Property Name="AbreviaturaUM" Type="String" Nullable="false" />
+    <Property Name="AbreviaturaUM" Type="String" Nullable="false" MaxLength="10" />
   </EntityType>
   <EntityType Name="Receta">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="TiempoEstimadoReceta" Type="String" Nullable="false" />
+    <Property Name="TiempoEstimadoReceta" Type="String" Nullable="false" MaxLength="10" />
     <NavigationProperty Name="Menu" Relationship="FirstModel.MenuReceta" FromRole="Receta" ToRole="Menu" />
-    <Property Name="IngredientesPrincipales" Type="String" Nullable="false" />
+    <Property Name="IngredientesPrincipales" Type="String" Nullable="false" MaxLength="150" />
     <Property Name="MenuId" Type="Int32" Nullable="false" />
   </EntityType>
   <EntityType Name="Menu">
@@ -287,12 +287,12 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="CodigoMenu" Type="String" Nullable="false" FixedLength="true" MaxLength="4" Unicode="true" />
-    <Property Name="DescripcionMenu" Type="String" Nullable="false" MaxLength="80" Unicode="true" />
+    <Property Name="CodigoMenu" Type="String" Nullable="false" FixedLength="true" MaxLength="3" Unicode="true" />
+    <Property Name="DescripcionMenu" Type="String" Nullable="false" MaxLength="50" Unicode="true" />
     <Property Name="PrecioMenu" Type="Double" Nullable="false" />
     <NavigationProperty Name="Receta" Relationship="FirstModel.MenuReceta" FromRole="Menu" ToRole="Receta" />
     <NavigationProperty Name="TipoDePlatillo" Relationship="FirstModel.TipoDePlatilloMenu" FromRole="Menu" ToRole="TipoDePlatillo" />
-    <Property Name="EstadoMenu" Type="String" Nullable="false" />
+    <Property Name="EstadoMenu" Type="Boolean" Nullable="false" />
     <Property Name="CategoriaId" Type="Int32" Nullable="false" />
     <NavigationProperty Name="DetalleDeOrden" Relationship="FirstModel.MenuDetalleDeOrden" FromRole="Menu" ToRole="DetalleDeOrden" />
     <NavigationProperty Name="Imagen" Relationship="FirstModel.ImagenMenu" FromRole="Menu" ToRole="Imagen" />
@@ -303,8 +303,8 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="CodigoCategoriaMenu" Type="String" Nullable="false" FixedLength="true" MaxLength="4" Unicode="true" />
-    <Property Name="DescripcionCategoriaMenu" Type="String" Nullable="false" MaxLength="80" Unicode="true" />
+    <Property Name="CodigoCategoriaMenu" Type="String" Nullable="false" FixedLength="true" MaxLength="3" Unicode="true" />
+    <Property Name="DescripcionCategoriaMenu" Type="String" Nullable="false" MaxLength="50" Unicode="true" />
     <Property Name="EstadoCategoriaMenu" Type="Boolean" Nullable="false" />
     <NavigationProperty Name="Menu" Relationship="FirstModel.TipoDePlatilloMenu" FromRole="TipoDePlatillo" ToRole="Menu" />
   </EntityType>
@@ -314,19 +314,19 @@
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="CantidadOrden" Type="Int32" Nullable="false" />
-    <Property Name="NotaDetalleOrden" Type="String" Nullable="false" MaxLength="80" FixedLength="false" />
+    <Property Name="NotaDetalleOrden" Type="String" Nullable="false" MaxLength="150" FixedLength="false" />
     <NavigationProperty Name="Orden" Relationship="FirstModel.OrdenDetalleDeOrden" FromRole="DetalleDeOrden" ToRole="Orden" />
     <Property Name="OrdenId" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Menu" Relationship="FirstModel.MenuDetalleDeOrden" FromRole="DetalleDeOrden" ToRole="Menu" />
     <Property Name="MenuId" Type="Int32" Nullable="false" />
-    <Property Name="EstadoDetalle" Type="String" Nullable="false" />
+    <Property Name="EstadoDetalle" Type="Boolean" Nullable="false" />
   </EntityType>
   <EntityType Name="Orden">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="CodigoOrden" Type="String" Nullable="false" FixedLength="true" MaxLength="4" Unicode="true" />
+    <Property Name="CodigoOrden" Type="String" Nullable="false" FixedLength="true" MaxLength="3" Unicode="true" />
     <Property Name="FechaOrden" Type="DateTime" Nullable="false" />
     <Property Name="HoraOrden" Type="DateTime" Nullable="false" />
     <Property Name="EstadoOrden" Type="Boolean" Nullable="false" />
@@ -348,12 +348,12 @@
     <NavigationProperty Name="Dato" Relationship="FirstModel.DatoCliente" FromRole="Cliente" ToRole="Dato" />
     <Property Name="DatoId" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Orden" Relationship="FirstModel.ClienteOrden" FromRole="Cliente" ToRole="Orden" />
-    <Property Name="Habitacion" Type="String" Nullable="false" />
-    <Property Name="Email" Type="String" Nullable="false" />
-    <Property Name="Telefono" Type="String" Nullable="false" />
+    <Property Name="Habitacion" Type="String" Nullable="false" MaxLength="20" />
+    <Property Name="Email" Type="String" Nullable="false" MaxLength="100" />
+    <Property Name="Telefono" Type="String" Nullable="false" MaxLength="9" />
     <NavigationProperty Name="TipoDeCliente" Relationship="FirstModel.TipoDeClienteCliente" FromRole="Cliente" ToRole="TipoDeCliente" />
-    <Property Name="EstadoCliente" Type="String" Nullable="false" />
-    <Property Name="Pasaporte" Type="String" Nullable="false" />
+    <Property Name="EstadoCliente" Type="Boolean" Nullable="false" />
+    <Property Name="Pasaporte" Type="String" Nullable="false" MaxLength="20" />
     <Property Name="TipoDeClienteId" Type="Int32" Nullable="false" />
   </EntityType>
   <EntityType Name="Mesero">
@@ -361,13 +361,13 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="INSS" Type="Int32" Nullable="false" />
+    <Property Name="INSS" Type="String" Nullable="false" MaxLength="15" />
     <NavigationProperty Name="Dato" Relationship="FirstModel.DatoMesero" FromRole="Mesero" ToRole="Dato" />
     <NavigationProperty Name="Orden" Relationship="FirstModel.MeseroOrden" FromRole="Mesero" ToRole="Orden" />
-    <Property Name="HoraEntrada" Type="String" Nullable="false" />
-    <Property Name="HoraSalida" Type="String" Nullable="false" />
-    <Property Name="InicioTurno" Type="String" Nullable="false" />
-    <Property Name="FinTurno" Type="String" Nullable="false" />
+    <Property Name="HoraEntrada" Type="String" Nullable="false" MaxLength="10" />
+    <Property Name="HoraSalida" Type="String" Nullable="false" MaxLength="10" />
+    <Property Name="InicioTurno" Type="String" Nullable="false" MaxLength="10" />
+    <Property Name="FinTurno" Type="String" Nullable="false" MaxLength="10" />
     <Property Name="DatoId" Type="Int32" Nullable="false" />
   </EntityType>
   <EntityType Name="Dato">
@@ -375,23 +375,23 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="DNI" Type="String" Nullable="false" FixedLength="true" MaxLength="15" />
-    <Property Name="PNombre" Type="String" Nullable="false" MaxLength="80" Unicode="true" />
-    <Property Name="PApellido" Type="String" Nullable="false" MaxLength="80" Unicode="true" />
+    <Property Name="DNI" Type="String" Nullable="false" FixedLength="true" MaxLength="16" />
+    <Property Name="PNombre" Type="String" Nullable="false" MaxLength="50" Unicode="true" />
+    <Property Name="PApellido" Type="String" Nullable="false" MaxLength="50" Unicode="true" />
     <NavigationProperty Name="Mesero" Relationship="FirstModel.DatoMesero" FromRole="Dato" ToRole="Mesero" />
     <NavigationProperty Name="Cliente" Relationship="FirstModel.DatoCliente" FromRole="Dato" ToRole="Cliente" />
     <NavigationProperty Name="Proveedor" Relationship="FirstModel.DatoProveedor" FromRole="Dato" ToRole="Proveedor" />
-    <Property Name="RUC" Type="String" Nullable="false" />
+    <Property Name="RUC" Type="String" Nullable="false" MaxLength="14" />
   </EntityType>
   <EntityType Name="Pago">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="FechaPago" Type="String" Nullable="false" />
-    <Property Name="MontoRecibido" Type="String" Nullable="false" />
-    <Property Name="MontoEntregado" Type="String" Nullable="false" />
-    <Property Name="Propina" Type="String" Nullable="false" />
+    <Property Name="FechaPago" Type="DateTime" Nullable="false" />
+    <Property Name="MontoRecibido" Type="Double" Nullable="false" />
+    <Property Name="MontoEntregado" Type="Decimal" Nullable="false" />
+    <Property Name="Propina" Type="Double" Nullable="false" />
     <Property Name="OrdenId" Type="Int32" Nullable="false" />
     <NavigationProperty Name="DetalleDePago" Relationship="FirstModel.PagoDetalleDePago" FromRole="Pago" ToRole="DetalleDePago" />
     <NavigationProperty Name="OrdenPago" Relationship="FirstModel.PagoOrdenPago" FromRole="Pago" ToRole="OrdenPago" />
@@ -403,9 +403,9 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="CodigoTipoPago" Type="String" Nullable="false" FixedLength="true" MaxLength="4" Unicode="true" />
+    <Property Name="CodigoTipoPago" Type="String" Nullable="false" FixedLength="true" MaxLength="3" Unicode="true" />
     <Property Name="DescripcionTipoPago" Type="String" Nullable="false" MaxLength="50" Unicode="true" />
-    <Property Name="EstadoTipoPago" Type="String" Nullable="false" />
+    <Property Name="EstadoTipoPago" Type="Boolean" Nullable="false" />
     <NavigationProperty Name="DetalleDePago" Relationship="FirstModel.TipoDePagoDetalleDePago" FromRole="TipoDePago" ToRole="DetalleDePago" />
   </EntityType>
   <Association Name="ProveedorEntrada">
@@ -615,9 +615,9 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="CodigoTipoCliente" Type="String" Nullable="false" />
-    <Property Name="DescripcionTipoCliente" Type="String" Nullable="false" />
-    <Property Name="EstadoTipoCliente" Type="String" Nullable="false" />
+    <Property Name="CodigoTipoCliente" Type="String" Nullable="false" FixedLength="true" MaxLength="3" />
+    <Property Name="DescripcionTipoCliente" Type="String" Nullable="false" MaxLength="50" />
+    <Property Name="EstadoTipoCliente" Type="Boolean" Nullable="false" />
     <NavigationProperty Name="Cliente" Relationship="FirstModel.TipoDeClienteCliente" FromRole="TipoDeCliente" ToRole="Cliente" />
   </EntityType>
   <Association Name="TipoDeClienteCliente">
@@ -637,7 +637,7 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Ruta" Type="String" Nullable="false" />
+    <Property Name="Ruta" Type="String" Nullable="false" MaxLength="150" />
     <NavigationProperty Name="Orden" Relationship="FirstModel.ImagenOrden" FromRole="Imagen" ToRole="Orden" />
     <NavigationProperty Name="Menu" Relationship="FirstModel.ImagenMenu" FromRole="Imagen" ToRole="Menu" />
     <NavigationProperty Name="Pago" Relationship="FirstModel.ImagenPago" FromRole="Imagen" ToRole="Pago" />
@@ -686,7 +686,7 @@
         <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="Producto">
-        <PropertyRef Name="UnidadDeMedidaId1" />
+        <PropertyRef Name="UnidadDeMedidaI" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -695,7 +695,7 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="FechaOrdenPago" Type="String" Nullable="false" />
+    <Property Name="FechaOrdenPago" Type="DateTime" Nullable="false" />
     <NavigationProperty Name="Orden" Relationship="FirstModel.OrdenOrdenPago" FromRole="OrdenPago" ToRole="Orden" />
     <Property Name="OrdenId" Type="Int32" Nullable="false" />
     <Property Name="IVA" Type="Int32" Nullable="false" />
@@ -732,9 +732,9 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="CodigoBodega" Type="String" Nullable="false" />
-    <Property Name="DescripcionBodega" Type="String" Nullable="false" />
-    <Property Name="EstadoBodega" Type="String" Nullable="false" />
+    <Property Name="CodigoBodega" Type="String" Nullable="false" FixedLength="true" MaxLength="3" />
+    <Property Name="DescripcionBodega" Type="String" Nullable="false" MaxLength="50" />
+    <Property Name="EstadoBodega" Type="Boolean" Nullable="false" />
     <NavigationProperty Name="Entrada" Relationship="FirstModel.BodegaEntrada" FromRole="Bodega" ToRole="Entrada" />
     <NavigationProperty Name="Salida" Relationship="FirstModel.BodegaSalida" FromRole="Bodega" ToRole="Salida" />
   </EntityType>

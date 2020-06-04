@@ -17,7 +17,7 @@
           <EntitySet Name="Entradas" EntityType="FirstModel.Entrada" />
           <EntitySet Name="TiposDeEntrada" EntityType="FirstModel.TipoDeEntrada" />
           <EntitySet Name="DetallesDeEntrada" EntityType="FirstModel.DetalleDeEntrada" />
-          <EntitySet Name="Categorias" EntityType="FirstModel.CategoriaProveedor" />
+          <EntitySet Name="CategoriasProveedor" EntityType="FirstModel.CategoriaProveedor" />
           <EntitySet Name="Productos" EntityType="FirstModel.Producto" />
           <EntitySet Name="DetallesDeSalida" EntityType="FirstModel.DetalleDeSalida" />
           <EntitySet Name="Salidas" EntityType="FirstModel.Salida" />
@@ -46,7 +46,7 @@
             <End Role="DetalleDeEntrada" EntitySet="DetallesDeEntrada" />
           </AssociationSet>
           <AssociationSet Name="CategoriaProducto" Association="FirstModel.CategoriaProducto">
-            <End Role="Categoria" EntitySet="Categorias" />
+            <End Role="Categoria" EntitySet="CategoriasProveedor" />
             <End Role="Producto" EntitySet="Productos" />
           </AssociationSet>
           <AssociationSet Name="SalidaDetalleDeSalida" Association="FirstModel.SalidaDetalleDeSalida">
