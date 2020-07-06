@@ -328,7 +328,6 @@
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="CodigoOrden" Type="String" Nullable="false" FixedLength="true" MaxLength="3" Unicode="true" />
     <Property Name="FechaOrden" Type="DateTime" Nullable="false" />
-    <Property Name="HoraOrden" Type="DateTime" Nullable="false" />
     <Property Name="EstadoOrden" Type="Boolean" Nullable="false" />
     <NavigationProperty Name="DetalleDeOrden" Relationship="FirstModel.OrdenDetalleDeOrden" FromRole="Orden" ToRole="DetalleDeOrden" />
     <NavigationProperty Name="Mesero" Relationship="FirstModel.MeseroOrden" FromRole="Orden" ToRole="Mesero" />
