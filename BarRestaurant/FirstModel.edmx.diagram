@@ -12,9 +12,8 @@
         <EntityTypeShape EntityType="FirstModel.CategoriaPro" Width="1.875" PointX="2.875" PointY="7.25" IsExpanded="true" />
         <EntityTypeShape EntityType="FirstModel.Producto" Width="2" PointX="5.125" PointY="4" />
         <EntityTypeShape EntityType="FirstModel.UnidadDeMedida" Width="2" PointX="5.5" PointY="1.375" />
-        <EntityTypeShape EntityType="FirstModel.Receta" Width="1.875" PointX="7.5" PointY="9.625" />
-        <EntityTypeShape EntityType="FirstModel.Menu" Width="1.625" PointX="10" PointY="8.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="FirstModel.CategoriaMenu" Width="1.875" PointX="7.75" PointY="6.875" />
+        <EntityTypeShape EntityType="FirstModel.Menu" Width="1.625" PointX="10.125" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FirstModel.CategoriaMenu" Width="1.875" PointX="7.5" PointY="6.875" />
         <EntityTypeShape EntityType="FirstModel.DetalleDeOrden" Width="1.75" PointX="7.875" PointY="3.875" />
         <EntityTypeShape EntityType="FirstModel.Orden" Width="1.5" PointX="10.25" PointY="3.75" />
         <EntityTypeShape EntityType="FirstModel.Cliente" Width="1.5" PointX="12.5" PointY="3.625" />
@@ -27,7 +26,6 @@
         <AssociationConnector Association="FirstModel.EntradaDetalleDeEntrada" ManuallyRouted="false" >
         </AssociationConnector>
         <AssociationConnector Association="FirstModel.CategoriaProducto" />
-        <AssociationConnector Association="FirstModel.MenuReceta" />
         <AssociationConnector Association="FirstModel.TipoDePlatilloMenu" />
         <AssociationConnector Association="FirstModel.OrdenDetalleDeOrden" ManuallyRouted="false" >
         </AssociationConnector>
@@ -68,9 +66,9 @@
         <AssociationConnector Association="FirstModel.TurnoOrden" />
         <AssociationConnector Association="FirstModel.BodegaCategoriaMenu" ManuallyRouted="false" >
         </AssociationConnector>
-        <EntityTypeShape EntityType="FirstModel.Ingrediente" Width="1.5" PointX="5.125" PointY="8.625" />
-        <AssociationConnector Association="FirstModel.RecetaIngrediente" />
+        <EntityTypeShape EntityType="FirstModel.Ingrediente" Width="1.5" PointX="5.375" PointY="8.75" />
         <AssociationConnector Association="FirstModel.ProductoIngrediente" />
+        <AssociationConnector Association="FirstModel.MenuIngrediente" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -20,7 +20,6 @@
           <EntitySet Name="CategoriasProveedor" EntityType="FirstModel.CategoriaPro" />
           <EntitySet Name="Productos" EntityType="FirstModel.Producto" />
           <EntitySet Name="UnidadesDeMedida" EntityType="FirstModel.UnidadDeMedida" />
-          <EntitySet Name="Recetas" EntityType="FirstModel.Receta" />
           <EntitySet Name="Menus" EntityType="FirstModel.Menu" />
           <EntitySet Name="TiposDePlatillo" EntityType="FirstModel.CategoriaMenu" />
           <EntitySet Name="DetallesDeOrden" EntityType="FirstModel.DetalleDeOrden" />
@@ -45,10 +44,6 @@
           <AssociationSet Name="CategoriaProducto" Association="FirstModel.CategoriaProducto">
             <End Role="Categoria" EntitySet="CategoriasProveedor" />
             <End Role="Producto" EntitySet="Productos" />
-          </AssociationSet>
-          <AssociationSet Name="MenuReceta" Association="FirstModel.MenuReceta">
-            <End Role="Menu" EntitySet="Menus" />
-            <End Role="Receta" EntitySet="Recetas" />
           </AssociationSet>
           <AssociationSet Name="TipoDePlatilloMenu" Association="FirstModel.TipoDePlatilloMenu">
             <End Role="TipoDePlatillo" EntitySet="TiposDePlatillo" />
@@ -140,12 +135,12 @@
             <End Role="CategoriaMenu" EntitySet="TiposDePlatillo" />
           </AssociationSet>
           <EntitySet Name="Ingredientes" EntityType="FirstModel.Ingrediente" />
-          <AssociationSet Name="RecetaIngrediente" Association="FirstModel.RecetaIngrediente">
-            <End Role="Receta" EntitySet="Recetas" />
-            <End Role="Ingrediente" EntitySet="Ingredientes" />
-          </AssociationSet>
           <AssociationSet Name="ProductoIngrediente" Association="FirstModel.ProductoIngrediente">
             <End Role="Producto" EntitySet="Productos" />
+            <End Role="Ingrediente" EntitySet="Ingredientes" />
+          </AssociationSet>
+          <AssociationSet Name="MenuIngrediente" Association="FirstModel.MenuIngrediente">
+            <End Role="Menu" EntitySet="Menus" />
             <End Role="Ingrediente" EntitySet="Ingredientes" />
           </AssociationSet>
         </EntityContainer>
@@ -241,16 +236,6 @@
           <NavigationProperty Name="Producto" Relationship="FirstModel.UnidadDeMedidaProducto" FromRole="UnidadDeMedida" ToRole="Producto" />
           <Property Name="AbreviaturaUM" Type="String" Nullable="false" MaxLength="10" />
         </EntityType>
-        <EntityType Name="Receta">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TiempoEstimadoReceta" Type="String" Nullable="false" MaxLength="10" />
-          <NavigationProperty Name="Menu" Relationship="FirstModel.MenuReceta" FromRole="Receta" ToRole="Menu" />
-          <Property Name="MenuId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Ingrediente" Relationship="FirstModel.RecetaIngrediente" FromRole="Receta" ToRole="Ingrediente" />
-        </EntityType>
         <EntityType Name="Menu">
           <Key>
             <PropertyRef Name="Id" />
@@ -259,13 +244,14 @@
           <Property Name="CodigoMenu" Type="String" Nullable="false" FixedLength="true" MaxLength="3" Unicode="true" />
           <Property Name="DescripcionMenu" Type="String" Nullable="false" MaxLength="50" Unicode="true" />
           <Property Name="PrecioMenu" Type="Double" Nullable="false" />
-          <NavigationProperty Name="Receta" Relationship="FirstModel.MenuReceta" FromRole="Menu" ToRole="Receta" />
           <NavigationProperty Name="TipoDePlatillo" Relationship="FirstModel.TipoDePlatilloMenu" FromRole="Menu" ToRole="TipoDePlatillo" />
+          <Property Name="TiempoEstimadoReceta" Type="String" Nullable="false" MaxLength="10" />
           <Property Name="EstadoMenu" Type="Boolean" Nullable="false" />
           <Property Name="CategoriaId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="DetalleDeOrden" Relationship="FirstModel.MenuDetalleDeOrden" FromRole="Menu" ToRole="DetalleDeOrden" />
           <NavigationProperty Name="Imagen" Relationship="FirstModel.ImagenMenu" FromRole="Menu" ToRole="Imagen" />
           <Property Name="ImagenId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Ingrediente" Relationship="FirstModel.MenuIngrediente" FromRole="Menu" ToRole="Ingrediente" />
         </EntityType>
         <EntityType Name="CategoriaMenu">
           <Key>
@@ -420,18 +406,6 @@
             </Principal>
             <Dependent Role="Producto">
               <PropertyRef Name="CategoriaId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="MenuReceta">
-          <End Type="FirstModel.Menu" Role="Menu" Multiplicity="1" />
-          <End Type="FirstModel.Receta" Role="Receta" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Menu">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Receta">
-              <PropertyRef Name="MenuId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -747,23 +721,11 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <NavigationProperty Name="Receta" Relationship="FirstModel.RecetaIngrediente" FromRole="Ingrediente" ToRole="Receta" />
-          <Property Name="RecetaId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Producto" Relationship="FirstModel.ProductoIngrediente" FromRole="Ingrediente" ToRole="Producto" />
           <Property Name="ProductoId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Menu" Relationship="FirstModel.MenuIngrediente" FromRole="Ingrediente" ToRole="Menu" />
+          <Property Name="MenuId" Type="Int32" Nullable="false" />
         </EntityType>
-        <Association Name="RecetaIngrediente">
-          <End Type="FirstModel.Receta" Role="Receta" Multiplicity="1" />
-          <End Type="FirstModel.Ingrediente" Role="Ingrediente" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Receta">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Ingrediente">
-              <PropertyRef Name="RecetaId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="ProductoIngrediente">
           <End Type="FirstModel.Producto" Role="Producto" Multiplicity="1" />
           <End Type="FirstModel.Ingrediente" Role="Ingrediente" Multiplicity="*" />
@@ -773,6 +735,18 @@
             </Principal>
             <Dependent Role="Ingrediente">
               <PropertyRef Name="ProductoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MenuIngrediente">
+          <End Type="FirstModel.Menu" Role="Menu" Multiplicity="1" />
+          <End Type="FirstModel.Ingrediente" Role="Ingrediente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Menu">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Ingrediente">
+              <PropertyRef Name="MenuId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
