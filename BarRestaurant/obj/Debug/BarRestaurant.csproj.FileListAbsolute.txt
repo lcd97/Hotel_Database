@@ -32,3 +32,10 @@ C:\Users\Daniela Cordero\Source\Repos\Hotel_Database-master\BarRestaurant\obj\De
 C:\Users\Daniela Cordero\Source\Repos\Hotel_Database-master\BarRestaurant\obj\Debug\BarRestaurant.csproj.CoreCompileInputs.cache
 C:\Users\Daniela Cordero\Source\Repos\Hotel_Database-master\BarRestaurant\obj\Debug\BarRestaurant.dll
 C:\Users\Daniela Cordero\Source\Repos\Hotel_Database-master\BarRestaurant\obj\Debug\BarRestaurant.pdb
+C:\sist\Hotel_Database-master\BarRestaurant\bin\Debug\BarRestaurant.dll.config
+C:\sist\Hotel_Database-master\BarRestaurant\bin\Debug\BarRestaurant.dll
+C:\sist\Hotel_Database-master\BarRestaurant\bin\Debug\BarRestaurant.pdb
+C:\sist\Hotel_Database-master\BarRestaurant\obj\Debug\BarRestaurant.csprojAssemblyReference.cache
+C:\sist\Hotel_Database-master\BarRestaurant\obj\Debug\BarRestaurant.csproj.CoreCompileInputs.cache
+C:\sist\Hotel_Database-master\BarRestaurant\obj\Debug\BarRestaurant.dll
+C:\sist\Hotel_Database-master\BarRestaurant\obj\Debug\BarRestaurant.pdb

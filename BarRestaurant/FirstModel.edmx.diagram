@@ -9,23 +9,22 @@
         <EntityTypeShape EntityType="FirstModel.Entrada" Width="1.5" PointX="0.5" PointY="3.625" />
         <EntityTypeShape EntityType="FirstModel.TipoDeEntrada" Width="1.875" PointX="0.5" PointY="7.375" IsExpanded="true" />
         <EntityTypeShape EntityType="FirstModel.DetalleDeEntrada" Width="1.875" PointX="2.5" PointY="4.375" />
-        <EntityTypeShape EntityType="FirstModel.CategoriaPro" Width="1.875" PointX="2.875" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="FirstModel.CategoriaProducto" Width="1.875" PointX="2.875" PointY="7.25" IsExpanded="true" />
         <EntityTypeShape EntityType="FirstModel.Producto" Width="2" PointX="5.125" PointY="4" />
         <EntityTypeShape EntityType="FirstModel.UnidadDeMedida" Width="2" PointX="5.5" PointY="1.375" />
         <EntityTypeShape EntityType="FirstModel.Menu" Width="1.625" PointX="10.125" PointY="7.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="FirstModel.CategoriaMenu" Width="1.875" PointX="7.5" PointY="6.875" />
-        <EntityTypeShape EntityType="FirstModel.DetalleDeOrden" Width="1.75" PointX="7.875" PointY="3.875" />
+        <EntityTypeShape EntityType="FirstModel.CategoriaMenu" Width="1.875" PointX="7.5" PointY="7.5" />
+        <EntityTypeShape EntityType="FirstModel.DetalleDeOrden" Width="1.75" PointX="8" PointY="3.875" />
         <EntityTypeShape EntityType="FirstModel.Orden" Width="1.5" PointX="10.25" PointY="3.75" />
         <EntityTypeShape EntityType="FirstModel.Cliente" Width="1.5" PointX="12.5" PointY="3.625" />
         <EntityTypeShape EntityType="FirstModel.Mesero" Width="1.5" PointX="14.125" PointY="0.875" />
-        <EntityTypeShape EntityType="FirstModel.Dato" Width="1.5" PointX="16.375" PointY="0.625" />
+        <EntityTypeShape EntityType="FirstModel.Dato" Width="1.5" PointX="16.25" PointY="0.5" />
         <EntityTypeShape EntityType="FirstModel.Pago" Width="1.5" PointX="16.75" PointY="4.5" />
-        <EntityTypeShape EntityType="FirstModel.TipoDePago" Width="1.5" PointX="18.5" PointY="7.5" />
+        <EntityTypeShape EntityType="FirstModel.TipoDePago" Width="1.5" PointX="18" PointY="7.75" />
         <AssociationConnector Association="FirstModel.ProveedorEntrada" />
         <AssociationConnector Association="FirstModel.TipoDeEntradaEntrada" />
         <AssociationConnector Association="FirstModel.EntradaDetalleDeEntrada" ManuallyRouted="false" >
         </AssociationConnector>
-        <AssociationConnector Association="FirstModel.CategoriaProducto" />
         <AssociationConnector Association="FirstModel.TipoDePlatilloMenu" />
         <AssociationConnector Association="FirstModel.OrdenDetalleDeOrden" ManuallyRouted="false" >
         </AssociationConnector>
@@ -35,27 +34,25 @@
         <AssociationConnector Association="FirstModel.MeseroOrden" ManuallyRouted="false" >
         </AssociationConnector>
         <AssociationConnector Association="FirstModel.ClienteOrden" />
-        <EntityTypeShape EntityType="FirstModel.DetalleDePago" Width="1.625" PointX="18.875" PointY="4.5" />
+        <EntityTypeShape EntityType="FirstModel.DetalleDePago" Width="1.625" PointX="14.5" PointY="7.625" />
         <AssociationConnector Association="FirstModel.TipoDePagoDetalleDePago" />
         <AssociationConnector Association="FirstModel.PagoDetalleDePago" />
         <EntityTypeShape EntityType="FirstModel.Imagen" Width="1.5" PointX="12.625" PointY="8.375" />
-        <AssociationConnector Association="FirstModel.DatoProveedor" ManuallyRouted="true" >
-          <ConnectorPoint PointX="16.462572872188293" PointY="0.625" />
-          <ConnectorPoint PointX="15.6875" PointY="0.625" />
-          <ConnectorPoint PointX="15.6875" PointY="0.4375" />
-          <ConnectorPoint PointX="1.5874886277451454" PointY="0.4375" />
-          <ConnectorPoint PointX="1.5874886277451454" PointY="0.5" />
+        <AssociationConnector Association="FirstModel.DatoProveedor" ManuallyRouted="false" >
         </AssociationConnector>
         <AssociationConnector Association="FirstModel.ProductoDetalleDeEntrada" />
         <AssociationConnector Association="FirstModel.UnidadDeMedidaProducto" />
-        <EntityTypeShape EntityType="FirstModel.OrdenPago" Width="1.5" PointX="14.625" PointY="4.5" />
+        <EntityTypeShape EntityType="FirstModel.OrdenPago" Width="1.5" PointX="14.625" PointY="4.375" />
         <AssociationConnector Association="FirstModel.OrdenOrdenPago" ManuallyRouted="false" >
         </AssociationConnector>
         <AssociationConnector Association="FirstModel.PagoOrdenPago" />
-        <EntityTypeShape EntityType="FirstModel.Bodega" Width="1.5" PointX="2.75" PointY="1.375" />
+        <EntityTypeShape EntityType="FirstModel.Bodega" Width="1.5" PointX="3" PointY="1.5" />
         <AssociationConnector Association="FirstModel.BodegaEntrada" ManuallyRouted="false" >
         </AssociationConnector>
-        <AssociationConnector Association="FirstModel.MenuDetalleDeOrden" ManuallyRouted="false" >
+        <AssociationConnector Association="FirstModel.MenuDetalleDeOrden" ManuallyRouted="true" >
+          <ConnectorPoint PointX="10.125" PointY="8.65763967604011" />
+          <ConnectorPoint PointX="9.5684002556849244" PointY="8.65763967604011" />
+          <ConnectorPoint PointX="9.5684002556849244" PointY="6.6244921875" />
         </AssociationConnector>
         <AssociationConnector Association="FirstModel.ImagenOrden" ManuallyRouted="false" >
         </AssociationConnector>
@@ -65,11 +62,18 @@
         <EntityTypeShape EntityType="FirstModel.Turno" Width="1.5" PointX="9.75" PointY="0.875" IsExpanded="true" />
         <AssociationConnector Association="FirstModel.MeseroTurno" />
         <AssociationConnector Association="FirstModel.TurnoOrden" />
-        <AssociationConnector Association="FirstModel.BodegaCategoriaMenu" ManuallyRouted="false" >
+        <AssociationConnector Association="FirstModel.BodegaCategoriaMenu" ManuallyRouted="true" >
+          <ConnectorPoint PointX="3.9100029273427523" PointY="1.5" />
+          <ConnectorPoint PointX="3.9100029273427523" PointY="1.1465462802257376" />
+          <ConnectorPoint PointX="7.8411460554925689" PointY="1.1465462802257376" />
+          <ConnectorPoint PointX="7.8411460554925689" PointY="7.125" />
+          <ConnectorPoint PointX="7.857457314810441" PointY="7.125" />
+          <ConnectorPoint PointX="7.857457314810441" PointY="7.5" />
         </AssociationConnector>
         <EntityTypeShape EntityType="FirstModel.Ingrediente" Width="1.5" PointX="5.375" PointY="8.75" />
         <AssociationConnector Association="FirstModel.ProductoIngrediente" />
         <AssociationConnector Association="FirstModel.MenuIngrediente" />
+        <AssociationConnector Association="FirstModel.CategoriaProductoProducto" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
