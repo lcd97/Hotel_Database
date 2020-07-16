@@ -50,9 +50,9 @@
         <AssociationConnector Association="FirstModel.BodegaEntrada" ManuallyRouted="false" >
         </AssociationConnector>
         <AssociationConnector Association="FirstModel.MenuDetalleDeOrden" ManuallyRouted="true" >
-          <ConnectorPoint PointX="10.125" PointY="8.65763967604011" />
-          <ConnectorPoint PointX="9.5684002556849244" PointY="8.65763967604011" />
-          <ConnectorPoint PointX="9.5684002556849244" PointY="6.6244921875" />
+          <ConnectorPoint PointX="10.125" PointY="8.7976698872251564" />
+          <ConnectorPoint PointX="9.6304185863787044" PointY="8.7976698872251564" />
+          <ConnectorPoint PointX="9.6304185863787044" PointY="6.6244921875" />
         </AssociationConnector>
         <AssociationConnector Association="FirstModel.ImagenOrden" ManuallyRouted="false" >
         </AssociationConnector>
