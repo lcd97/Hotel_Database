@@ -117,15 +117,6 @@
             <End Role="Imagen" EntitySet="Imagenes" />
             <End Role="Pago" EntitySet="Pagos" />
           </AssociationSet>
-          <EntitySet Name="Turnos" EntityType="FirstModel.Turno" />
-          <AssociationSet Name="MeseroTurno" Association="FirstModel.MeseroTurno">
-            <End Role="Mesero" EntitySet="Meseros" />
-            <End Role="Turno" EntitySet="Turnos" />
-          </AssociationSet>
-          <AssociationSet Name="TurnoOrden" Association="FirstModel.TurnoOrden">
-            <End Role="Turno" EntitySet="Turnos" />
-            <End Role="Orden" EntitySet="Ordenes" />
-          </AssociationSet>
           <AssociationSet Name="BodegaCategoriaMenu" Association="FirstModel.BodegaCategoriaMenu">
             <End Role="Bodega" EntitySet="Bodegas" />
             <End Role="CategoriaMenu" EntitySet="CategoriasMenu" />
@@ -296,8 +287,6 @@
           <NavigationProperty Name="OrdenPago" Relationship="FirstModel.OrdenOrdenPago" FromRole="Orden" ToRole="OrdenPago" />
           <NavigationProperty Name="Imagen" Relationship="FirstModel.ImagenOrden" FromRole="Orden" ToRole="Imagen" />
           <Property Name="ImagenId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Turno" Relationship="FirstModel.TurnoOrden" FromRole="Orden" ToRole="Turno" />
-          <Property Name="TurnoId" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="Cliente">
           <Key>
@@ -323,14 +312,13 @@
           <Property Name="HoraEntrada" Type="String" Nullable="false" MaxLength="10" />
           <Property Name="HoraSalida" Type="String" Nullable="false" MaxLength="10" />
           <Property Name="DatoId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Turno" Relationship="FirstModel.MeseroTurno" FromRole="Mesero" ToRole="Turno" />
         </EntityType>
         <EntityType Name="Dato">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="DNI" Type="String" Nullable="false" FixedLength="true" MaxLength="16" />
+          <Property Name="Cedula" Type="String" Nullable="false" FixedLength="true" MaxLength="16" />
           <Property Name="PNombre" Type="String" Nullable="false" MaxLength="50" Unicode="true" />
           <Property Name="PApellido" Type="String" Nullable="false" MaxLength="50" Unicode="true" />
           <NavigationProperty Name="Mesero" Relationship="FirstModel.DatoMesero" FromRole="Dato" ToRole="Mesero" />
@@ -344,8 +332,8 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="FechaPago" Type="DateTime" Nullable="false" />
-          <Property Name="MontoRecibido" Type="Double" Nullable="false" />
-          <Property Name="MontoEntregado" Type="Decimal" Nullable="false" />
+          <Property Name="Descuento" Type="Int32" Nullable="false" />
+          <Property Name="IVA" Type="Int32" Nullable="false" />
           <Property Name="Propina" Type="Double" Nullable="false" />
           <Property Name="OrdenId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="DetalleDePago" Relationship="FirstModel.PagoDetalleDePago" FromRole="Pago" ToRole="DetalleDePago" />
@@ -478,8 +466,11 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="TipoDePago" Relationship="FirstModel.TipoDePagoDetalleDePago" FromRole="DetalleDePago" ToRole="TipoDePago" />
           <Property Name="TipoDePagoId" Type="Int32" Nullable="false" />
+          <Property Name="CantidadPagar" Type="String" Nullable="false" />
           <NavigationProperty Name="Pago" Relationship="FirstModel.PagoDetalleDePago" FromRole="DetalleDePago" ToRole="Pago" />
           <Property Name="PagoId" Type="Int32" Nullable="false" />
+          <Property Name="MontoRecibido" Type="Double" Nullable="false" />
+          <Property Name="MontoEntregado" Type="Double" Nullable="false" />
         </EntityType>
         <Association Name="TipoDePagoDetalleDePago">
           <End Type="FirstModel.TipoDePago" Role="TipoDePago" Multiplicity="1" />
@@ -556,11 +547,8 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FechaOrdenPago" Type="DateTime" Nullable="false" />
           <NavigationProperty Name="Orden" Relationship="FirstModel.OrdenOrdenPago" FromRole="OrdenPago" ToRole="Orden" />
           <Property Name="OrdenId" Type="Int32" Nullable="false" />
-          <Property Name="IVA" Type="Int32" Nullable="false" />
-          <Property Name="Descuento" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Pago" Relationship="FirstModel.PagoOrdenPago" FromRole="OrdenPago" ToRole="Pago" />
           <Property Name="PagoId" Type="Int32" Nullable="false" />
         </EntityType>
@@ -656,41 +644,6 @@
             </Principal>
             <Dependent Role="Pago">
               <PropertyRef Name="ImagenId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="Turno">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="InicioTurno" Type="DateTime" Nullable="false" />
-          <Property Name="FinTurno" Type="DateTime" Nullable="false" />
-          <NavigationProperty Name="Mesero" Relationship="FirstModel.MeseroTurno" FromRole="Turno" ToRole="Mesero" />
-          <Property Name="MeseroId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Orden" Relationship="FirstModel.TurnoOrden" FromRole="Turno" ToRole="Orden" />
-        </EntityType>
-        <Association Name="MeseroTurno">
-          <End Type="FirstModel.Mesero" Role="Mesero" Multiplicity="1" />
-          <End Type="FirstModel.Turno" Role="Turno" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Mesero">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Turno">
-              <PropertyRef Name="MeseroId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="TurnoOrden">
-          <End Type="FirstModel.Turno" Role="Turno" Multiplicity="1" />
-          <End Type="FirstModel.Orden" Role="Orden" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Turno">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Orden">
-              <PropertyRef Name="TurnoId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
