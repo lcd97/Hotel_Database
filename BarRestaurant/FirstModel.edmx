@@ -25,7 +25,7 @@
           <EntitySet Name="DetallesDeOrden" EntityType="FirstModel.DetalleDeOrden" />
           <EntitySet Name="Ordenes" EntityType="FirstModel.Orden" />
           <EntitySet Name="Clientes" EntityType="FirstModel.Cliente" />
-          <EntitySet Name="Meseros" EntityType="FirstModel.Mesero" />
+          <EntitySet Name="Colaboradores" EntityType="FirstModel.Colaborador" />
           <EntitySet Name="Datos" EntityType="FirstModel.Dato" />
           <EntitySet Name="Pagos" EntityType="FirstModel.Pago" />
           <EntitySet Name="TiposDePago" EntityType="FirstModel.TipoDePago" />
@@ -51,14 +51,14 @@
           </AssociationSet>
           <AssociationSet Name="DatoMesero" Association="FirstModel.DatoMesero">
             <End Role="Dato" EntitySet="Datos" />
-            <End Role="Mesero" EntitySet="Meseros" />
+            <End Role="Mesero" EntitySet="Colaboradores" />
           </AssociationSet>
           <AssociationSet Name="DatoCliente" Association="FirstModel.DatoCliente">
             <End Role="Dato" EntitySet="Datos" />
             <End Role="Cliente" EntitySet="Clientes" />
           </AssociationSet>
           <AssociationSet Name="MeseroOrden" Association="FirstModel.MeseroOrden">
-            <End Role="Mesero" EntitySet="Meseros" />
+            <End Role="Mesero" EntitySet="Colaboradores" />
             <End Role="Orden" EntitySet="Ordenes" />
           </AssociationSet>
           <AssociationSet Name="ClienteOrden" Association="FirstModel.ClienteOrden">
@@ -269,16 +269,16 @@
           <NavigationProperty Name="Menu" Relationship="FirstModel.MenuDetalleDeOrden" FromRole="DetalleDeOrden" ToRole="Menu" />
           <Property Name="PrecioUnitario" Type="String" Nullable="false" />
           <Property Name="MenuId" Type="Int32" Nullable="false" />
-          <Property Name="EstadoDetalle" Type="Boolean" Nullable="false" />
+          <Property Name="EstadoDetalle" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="Orden">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CodigoOrden" Type="String" Nullable="false" FixedLength="true" MaxLength="3" Unicode="true" />
+          <Property Name="CodigoOrden" Type="Int32" Nullable="false" />
           <Property Name="FechaOrden" Type="DateTime" Nullable="false" />
-          <Property Name="EstadoOrden" Type="Boolean" Nullable="false" />
+          <Property Name="EstadoOrden" Type="Int32" Nullable="false" />
           <NavigationProperty Name="DetalleDeOrden" Relationship="FirstModel.OrdenDetalleDeOrden" FromRole="Orden" ToRole="DetalleDeOrden" />
           <NavigationProperty Name="Mesero" Relationship="FirstModel.MeseroOrden" FromRole="Orden" ToRole="Mesero" />
           <Property Name="MeseroId" Type="Int32" Nullable="false" />
@@ -294,14 +294,14 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="Dato" Relationship="FirstModel.DatoCliente" FromRole="Cliente" ToRole="Dato" />
-          <Property Name="DatoId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Orden" Relationship="FirstModel.ClienteOrden" FromRole="Cliente" ToRole="Orden" />
+          <Property Name="Identificacion" Type="String" Nullable="false" MaxLength="20" />
           <Property Name="Email" Type="String" Nullable="false" MaxLength="100" />
           <Property Name="Telefono" Type="String" Nullable="false" MaxLength="9" />
           <Property Name="EstadoCliente" Type="Boolean" Nullable="false" />
-          <Property Name="Pasaporte" Type="String" Nullable="false" MaxLength="20" />
+          <Property Name="DatoId" Type="Int32" Nullable="false" />
         </EntityType>
-        <EntityType Name="Mesero">
+        <EntityType Name="Colaborador">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -312,6 +312,7 @@
           <Property Name="HoraEntrada" Type="String" Nullable="false" MaxLength="10" />
           <Property Name="HoraSalida" Type="String" Nullable="false" MaxLength="10" />
           <Property Name="DatoId" Type="Int32" Nullable="false" />
+          <Property Name="EstadoColaborador" Type="String" Nullable="false" />
         </EntityType>
         <EntityType Name="Dato">
           <Key>
@@ -331,10 +332,13 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NumeroPago" Type="String" Nullable="false" />
           <Property Name="FechaPago" Type="DateTime" Nullable="false" />
           <Property Name="Descuento" Type="Int32" Nullable="false" />
           <Property Name="IVA" Type="Int32" Nullable="false" />
           <Property Name="Propina" Type="Double" Nullable="false" />
+          <Property Name="CambioDolar" Type="String" Nullable="false" />
+          <Property Name="CambioCordoba" Type="String" Nullable="false" />
           <Property Name="OrdenId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="DetalleDePago" Relationship="FirstModel.PagoDetalleDePago" FromRole="Pago" ToRole="DetalleDePago" />
           <NavigationProperty Name="OrdenPago" Relationship="FirstModel.PagoOrdenPago" FromRole="Pago" ToRole="OrdenPago" />
@@ -413,7 +417,7 @@
         </Association>
         <Association Name="DatoMesero">
           <End Type="FirstModel.Dato" Role="Dato" Multiplicity="1" />
-          <End Type="FirstModel.Mesero" Role="Mesero" Multiplicity="*" />
+          <End Type="FirstModel.Colaborador" Role="Mesero" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Dato">
               <PropertyRef Name="Id" />
@@ -436,7 +440,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="MeseroOrden">
-          <End Type="FirstModel.Mesero" Role="Mesero" Multiplicity="1" />
+          <End Type="FirstModel.Colaborador" Role="Mesero" Multiplicity="1" />
           <End Type="FirstModel.Orden" Role="Orden" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Mesero">
