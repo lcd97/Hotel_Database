@@ -101,10 +101,6 @@
       <End Role="Imagen" EntitySet="Imagenes" />
       <End Role="Menu" EntitySet="Menus" />
     </AssociationSet>
-    <AssociationSet Name="ImagenPago" Association="FirstModel.ImagenPago">
-      <End Role="Imagen" EntitySet="Imagenes" />
-      <End Role="Pago" EntitySet="Pagos" />
-    </AssociationSet>
     <AssociationSet Name="BodegaCategoriaMenu" Association="FirstModel.BodegaCategoriaMenu">
       <End Role="Bodega" EntitySet="Bodegas" />
       <End Role="CategoriaMenu" EntitySet="CategoriasMenu" />
@@ -122,6 +118,11 @@
       <End Role="CategoriaProducto" EntitySet="CategoriasProducto" />
       <End Role="Producto" EntitySet="Productos" />
     </AssociationSet>
+    <AssociationSet Name="ImagenCliente" Association="FirstModel.ImagenCliente">
+      <End Role="Imagen" EntitySet="Imagenes" />
+      <End Role="Cliente" EntitySet="Clientes" />
+    </AssociationSet>
+    <EntitySet Name="Monedas" EntityType="FirstModel.Moneda" />
   </EntityContainer>
   <EntityType Name="Proveedor">
     <Key>
@@ -225,7 +226,7 @@
     <Property Name="DescripcionMenu" Type="String" Nullable="false" MaxLength="50" Unicode="true" />
     <Property Name="PrecioMenu" Type="Double" Nullable="false" />
     <NavigationProperty Name="TipoDePlatillo" Relationship="FirstModel.TipoDePlatilloMenu" FromRole="Menu" ToRole="TipoDePlatillo" />
-    <Property Name="TiempoEstimadoReceta" Type="String" Nullable="false" MaxLength="10" />
+    <Property Name="TiempoEstimado" Type="String" Nullable="false" MaxLength="10" />
     <Property Name="EstadoMenu" Type="Boolean" Nullable="false" />
     <Property Name="CategoriaId" Type="Int32" Nullable="false" />
     <NavigationProperty Name="DetalleDeOrden" Relationship="FirstModel.MenuDetalleDeOrden" FromRole="Menu" ToRole="DetalleDeOrden" />
@@ -253,11 +254,11 @@
     <Property Name="CantidadOrden" Type="Int32" Nullable="false" />
     <Property Name="NotaDetalleOrden" Type="String" Nullable="false" MaxLength="150" FixedLength="false" />
     <NavigationProperty Name="Orden" Relationship="FirstModel.OrdenDetalleDeOrden" FromRole="DetalleDeOrden" ToRole="Orden" />
+    <Property Name="PrecioUnitario" Type="Double" Nullable="false" />
+    <Property Name="EstadoDetalleOrden" Type="Boolean" Nullable="false" />
     <Property Name="OrdenId" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Menu" Relationship="FirstModel.MenuDetalleDeOrden" FromRole="DetalleDeOrden" ToRole="Menu" />
-    <Property Name="PrecioUnitario" Type="String" Nullable="false" />
     <Property Name="MenuId" Type="Int32" Nullable="false" />
-    <Property Name="EstadoDetalle" Type="Int32" Nullable="false" />
   </EntityType>
   <EntityType Name="Orden">
     <Key>
@@ -284,10 +285,12 @@
     <NavigationProperty Name="Dato" Relationship="FirstModel.DatoCliente" FromRole="Cliente" ToRole="Dato" />
     <NavigationProperty Name="Orden" Relationship="FirstModel.ClienteOrden" FromRole="Cliente" ToRole="Orden" />
     <Property Name="Identificacion" Type="String" Nullable="false" MaxLength="20" />
-    <Property Name="Email" Type="String" Nullable="false" MaxLength="100" />
-    <Property Name="Telefono" Type="String" Nullable="false" MaxLength="9" />
+    <Property Name="EmailCliente" Type="String" Nullable="false" MaxLength="100" />
+    <Property Name="TelefonoCliente" Type="String" Nullable="false" MaxLength="9" />
     <Property Name="EstadoCliente" Type="Boolean" Nullable="false" />
     <Property Name="DatoId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Imagen" Relationship="FirstModel.ImagenCliente" FromRole="Cliente" ToRole="Imagen" />
+    <Property Name="ImagenId" Type="Int32" Nullable="false" />
   </EntityType>
   <EntityType Name="Colaborador">
     <Key>
@@ -299,8 +302,8 @@
     <NavigationProperty Name="Orden" Relationship="FirstModel.MeseroOrden" FromRole="Mesero" ToRole="Orden" />
     <Property Name="HoraEntrada" Type="String" Nullable="false" MaxLength="10" />
     <Property Name="HoraSalida" Type="String" Nullable="false" MaxLength="10" />
-    <Property Name="DatoId" Type="Int32" Nullable="false" />
     <Property Name="EstadoColaborador" Type="String" Nullable="false" />
+    <Property Name="DatoId" Type="Int32" Nullable="false" />
   </EntityType>
   <EntityType Name="Dato">
     <Key>
@@ -320,18 +323,14 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="NumeroPago" Type="String" Nullable="false" />
+    <Property Name="NumeroPago" Type="Int32" Nullable="false" />
     <Property Name="FechaPago" Type="DateTime" Nullable="false" />
     <Property Name="Descuento" Type="Int32" Nullable="false" />
     <Property Name="IVA" Type="Int32" Nullable="false" />
     <Property Name="Propina" Type="Double" Nullable="false" />
-    <Property Name="CambioDolar" Type="String" Nullable="false" />
-    <Property Name="CambioCordoba" Type="String" Nullable="false" />
-    <Property Name="OrdenId" Type="Int32" Nullable="false" />
+    <Property Name="CambioDolar" Type="Double" Nullable="false" />
     <NavigationProperty Name="DetalleDePago" Relationship="FirstModel.PagoDetalleDePago" FromRole="Pago" ToRole="DetalleDePago" />
     <NavigationProperty Name="OrdenPago" Relationship="FirstModel.PagoOrdenPago" FromRole="Pago" ToRole="OrdenPago" />
-    <NavigationProperty Name="Imagen" Relationship="FirstModel.ImagenPago" FromRole="Pago" ToRole="Imagen" />
-    <Property Name="ImagenId" Type="Int32" Nullable="false" />
   </EntityType>
   <EntityType Name="TipoDePago">
     <Key>
@@ -457,12 +456,12 @@
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <NavigationProperty Name="TipoDePago" Relationship="FirstModel.TipoDePagoDetalleDePago" FromRole="DetalleDePago" ToRole="TipoDePago" />
-    <Property Name="TipoDePagoId" Type="Int32" Nullable="false" />
-    <Property Name="CantidadPagar" Type="String" Nullable="false" />
+    <Property Name="CantidadPagar" Type="Double" Nullable="false" />
     <NavigationProperty Name="Pago" Relationship="FirstModel.PagoDetalleDePago" FromRole="DetalleDePago" ToRole="Pago" />
-    <Property Name="PagoId" Type="Int32" Nullable="false" />
     <Property Name="MontoRecibido" Type="Double" Nullable="false" />
     <Property Name="MontoEntregado" Type="Double" Nullable="false" />
+    <Property Name="PagoId" Type="Int32" Nullable="false" />
+    <Property Name="TipoDePagoId" Type="Int32" Nullable="false" />
   </EntityType>
   <Association Name="TipoDePagoDetalleDePago">
     <End Type="FirstModel.TipoDePago" Role="TipoDePago" Multiplicity="1" />
@@ -496,7 +495,7 @@
     <Property Name="Ruta" Type="String" Nullable="false" MaxLength="150" />
     <NavigationProperty Name="Orden" Relationship="FirstModel.ImagenOrden" FromRole="Imagen" ToRole="Orden" />
     <NavigationProperty Name="Menu" Relationship="FirstModel.ImagenMenu" FromRole="Imagen" ToRole="Menu" />
-    <NavigationProperty Name="Pago" Relationship="FirstModel.ImagenPago" FromRole="Imagen" ToRole="Pago" />
+    <NavigationProperty Name="Cliente" Relationship="FirstModel.ImagenCliente" FromRole="Imagen" ToRole="Cliente" />
   </EntityType>
   <Association Name="DatoProveedor">
     <End Type="FirstModel.Dato" Role="Dato" Multiplicity="1" />
@@ -627,18 +626,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="ImagenPago">
-    <End Type="FirstModel.Imagen" Role="Imagen" Multiplicity="1" />
-    <End Type="FirstModel.Pago" Role="Pago" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Imagen">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Pago">
-        <PropertyRef Name="ImagenId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="BodegaCategoriaMenu">
     <End Type="FirstModel.Bodega" Role="Bodega" Multiplicity="1" />
     <End Type="FirstModel.CategoriaMenu" Role="CategoriaMenu" Multiplicity="*" />
@@ -697,4 +684,22 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="ImagenCliente">
+    <End Type="FirstModel.Imagen" Role="Imagen" Multiplicity="1" />
+    <End Type="FirstModel.Cliente" Role="Cliente" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Imagen">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Cliente">
+        <PropertyRef Name="ImagenId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Moneda">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
 </Schema>
